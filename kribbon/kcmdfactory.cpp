@@ -1,0 +1,2 @@
+#include "kcmdfactory.h"
+
