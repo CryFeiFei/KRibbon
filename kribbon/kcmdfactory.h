@@ -40,13 +40,6 @@ private:
 		static QHash<QByteArray, Constructor> instance;
 		return instance;
 	}
-
-	static void registerCmd()
-	{
-		REGISTER_CMD(KCmdStart);
-		REGISTER_CMD(KCmdOpen);
-		REGISTER_CMD(KCmdClose);
-	}
 };
 
 #endif // KCMDFACTORY_H

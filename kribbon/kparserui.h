@@ -11,7 +11,8 @@ public:
 
 signals:
 
-
+private:
+	QString m_xmlPath;
 
 };
 

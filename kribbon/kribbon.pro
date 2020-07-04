@@ -22,6 +22,8 @@ SOURCES += \
     kparserui.cpp \
     kribbon.cpp \
     kribboncmdmanager.cpp \
+    kribbonwidget/kribbonpushbutton.cpp \
+    kribbonwidget/kribbontabwidget.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -32,6 +34,8 @@ HEADERS += \
     kparserui.h \
     kribbon.h \
     kribboncmdmanager.h \
+    kribbonwidget/kribbonpushbutton.h \
+    kribbonwidget/kribbontabwidget.h \
     mainwindow.h
 
 FORMS += \
