@@ -23,7 +23,7 @@ SOURCES += \
     kribbon.cpp \
     kribboncmdmanager.cpp \
     kribbonwidget/kribbonpushbutton.cpp \
-    kribbonwidget/kribbontabwidget.cpp \
+    kribbonwidget/kribbontab.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -35,7 +35,7 @@ HEADERS += \
     kribbon.h \
     kribboncmdmanager.h \
     kribbonwidget/kribbonpushbutton.h \
-    kribbonwidget/kribbontabwidget.h \
+    kribbonwidget/kribbontab.h \
     mainwindow.h
 
 FORMS += \

@@ -9,6 +9,10 @@ class KParserUI : public QObject
 public:
 	explicit KParserUI(QString xmlPath, QObject *parent = nullptr);
 
+
+private:
+	void ParserXML();
+
 signals:
 
 private:

@@ -20,15 +20,31 @@ public:
 	static QObject* createObject(const QByteArray& className, QObject* parent = NULL )
 	{
 		Constructor constructor = instance().value(className);
-		if ( constructor == NULL )
+		if (!constructor)
 			return NULL;
 
 		return (*constructor)(parent);
 	}
 
-private:
-	typedef QObject*(*Constructor)(QObject* parent );
+	//register widget
+	template<typename T1>
+	static void registerWidget()
+	{
+		instanceWidget().insert(T1::staticMetaObject.className(), &constructorHelperWidget<T1> );
+	}
 
+	static QWidget* createWidget(const QByteArray& className, QWidget* parent = NULL )
+	{
+		ConstructorWidget constructorWidget = instanceWidget().value(className);
+		if (!constructorWidget)
+			return NULL;
+
+		return (*constructorWidget)(parent);
+	}
+
+private:
+	//object
+	typedef QObject*(*Constructor)(QObject* parent);
 	template<typename T>
 	static QObject* constructorHelper(QObject* parent)
 	{
@@ -39,6 +55,19 @@ private:
 	{
 		static QHash<QByteArray, Constructor> instance;
 		return instance;
+	}
+
+	typedef QWidget*(*ConstructorWidget)(QWidget* parent);
+	template<typename T1>
+	static QWidget* constructorHelperWidget(QWidget* parent)
+	{
+		return new T1(parent);
+	}
+
+	static QHash<QByteArray, ConstructorWidget>& instanceWidget()
+	{
+		static QHash<QByteArray, ConstructorWidget> instanceWidget;
+		return instanceWidget;
 	}
 };
 

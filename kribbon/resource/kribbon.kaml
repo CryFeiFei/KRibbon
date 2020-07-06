@@ -1,6 +1,6 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
 <KRibbon version = "1.0">
-	<KRibbonTabWidget cmd="KCmdTabStart">
+	<KRibbonTab cmd="KCmdTabStart">
 		<KRibbonPushButton cmd="KCmdStart" text="start" />
 		<KRibbonPushButton cmd="KCmdOpen" text="open" />
 		<KRibbonPushButton cmd="KCmdClose" text="close" />
