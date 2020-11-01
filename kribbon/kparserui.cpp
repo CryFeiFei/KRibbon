@@ -1,5 +1,5 @@
 #include "kparserui.h"
-#include "kcmdfactory.h"
+#include "kcommand/kcmdfactory.h"
 #include "kcommand/kcmdtabstart.h"
 
 #include "kribbonwidget/kribbontab.h"
@@ -8,10 +8,10 @@
 #include <QDebug>
 
 #define REGISTER_CMD(classname) \
-KCmdObjectFactory::registerClass<classname>()
+//KCmdObjectFactory::registerClass<classname>()
 
 #define REGISTER_Widget(classname) \
-KCmdObjectFactory::registerWidget<classname>()
+//KCmdObjectFactory::registerWidget<classname>()
 
 static void RegisterCmd()
 {

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTime>
 #include <QMap>
+#include <QDebug>
 
 class KCommand;
 
@@ -13,6 +14,9 @@ class KxMainWindow : public QWidget
 	using CmdMap = QMap<QString, KCommand*>;
 public:
 	explicit KxMainWindow(QWidget *parent = nullptr);
+
+private:
+	void initCmd();
 
 signals:
 

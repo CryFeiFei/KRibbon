@@ -3,6 +3,9 @@
 
 #include <QObject>
 #include "kcommand.h"
+#include "kcmdfactory.h"
+
+class KxMainWindow;
 
 //<KRibbonPushButton cmd="KCmdStart" text="start" />
 //<KRibbonPushButton cmd="KCmdOpen" text="open" />
@@ -12,7 +15,7 @@ class KCmdStart : public KCommand
 {
 	Q_OBJECT
 public:
-	explicit KCmdStart(QObject *parent = nullptr);
+	KCmdStart(QObject *parent = nullptr, QObject* host = nullptr);
 
 signals:
 

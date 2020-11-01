@@ -1,6 +1,9 @@
 #include "kcommand.h"
 
-KCommand::KCommand(QObject *parent) : QObject(parent)
+
+KCommand::KCommand(QObject *parent, QObject *host) :
+	QObject(parent)
+	, m_host(host)
 {
 
 }

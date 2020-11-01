@@ -16,9 +16,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    kcmdfactory.cpp \
     kcommand/kcmdtabstart.cpp \
     kcommand/kcommand.cpp \
+    kcommand/kcmdfactory.cpp \
     kparserui.cpp \
     kribbon.cpp \
     kribboncmdmanager.cpp \
@@ -29,9 +29,9 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
-    kcmdfactory.h \
     kcommand/kcmdtabstart.h \
     kcommand/kcommand.h \
+    kcommand/kcmdfactory.h \
     kparserui.h \
     kribbon.h \
     kribboncmdmanager.h \
