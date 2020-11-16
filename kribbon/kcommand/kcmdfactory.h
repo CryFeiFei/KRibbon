@@ -17,10 +17,10 @@
 
 class KCmdFactory;
 
-class KCommandFactoryBase
+class KCommandFactoryItemBase
 {
 public:
-	KCommandFactoryBase(const QString& className);
+	KCommandFactoryItemBase(const QString& className);
 	virtual KCommand* createCommand(QObject* parent, QObject* host) = 0;
 	QString className();
 private:
@@ -30,16 +30,16 @@ private:
 class KCmdFactory
 {
 public:
-	static void regiserCommand(KCommandFactoryBase* item);
+	static void regiserCommand(KCommandFactoryItemBase* item);
 	static KCommand* createCommand(const QString& className, QObject* parent, QObject* host);
 };
 
 template<typename T, typename _HOST>
-class KCmdFactoryItem : public KCommandFactoryBase
+class KCmdFactoryItem : public KCommandFactoryItemBase
 {
 public:
 	KCmdFactoryItem(const QString& className, const QString& host) :
-		KCommandFactoryBase(className)
+		KCommandFactoryItemBase(className)
 	  , m_hostName(host)
 	{
 		KCmdFactory::regiserCommand(this);
@@ -59,28 +59,79 @@ private:
 };
 
 
-#define REGISTER_COMMAND(classname, host) \
+#define KRB_REGISTER_COMMAND(classname, host) \
 KCmdFactoryItem<classname, host> gs_cmd_##classname(#classname, #host)
 
-class KCmdObjectFactory
+//------------------------
+// widget
+class KWidgetFactory;
+
+class KWidgetFactoryItemBase
 {
 public:
-	template<typename T>
-	static void registerClass()
+	KWidgetFactoryItemBase(const QString& className);
+	virtual QWidget* createWidget(QObject* parent) = 0;
+	QString className();
+private:
+	QString m_className;
+};
+
+
+class KWidgetFactory
+{
+public:
+	static void regiserWidget(KWidgetFactoryItemBase* item);
+	static QWidget* createWdiget(const QString& className, QObject* parent);
+};
+
+template<typename T>
+class KWidgetFactoryItem : public KWidgetFactoryItemBase
+{
+public:
+	KWidgetFactoryItem(const QString& className) :
+		KWidgetFactoryItemBase(className)
 	{
-		instance().insert(T::staticMetaObject.className(), &constructorHelper<T> );
+		KWidgetFactory::regiserWidget(this);
 	}
 
-	static QObject* createObject(const QByteArray& className, QObject* parent = NULL )
+	QWidget* createWidget(QObject* parent)
 	{
-		Constructor constructor = instance().value(className);
-		if (!constructor)
-			return NULL;
-
-		return (*constructor)(parent);
+		return new T(parent);
 	}
+};
 
-	//register widget
+#define KRB_REGISTER_Widget(classname) \
+KWidgetFactoryItem<classname> gs_widget_##classname(#classname)
+
+//----------------------------------------------------
+
+//class KCmdWidgetFactory
+//{
+//public:
+//	static void regiserWidget(QWidget* widget);
+//	static QWidget* createWidget(const QString& className, QObject* parent);
+
+//};
+
+//class KCmdObjectFactory
+//{
+//public:
+//	template<typename T>
+//	static void registerClass()
+//	{
+//		instance().insert(T::staticMetaObject.className(), &constructorHelper<T> );
+//	}
+
+//	static QObject* createObject(const QByteArray& className, QObject* parent = NULL )
+//	{
+//		Constructor constructor = instance().value(className);
+//		if (!constructor)
+//			return NULL;
+
+//		return (*constructor)(parent);
+//	}
+
+//	//register widget
 //	template<typename T1>
 //	static void registerWidget()
 //	{
@@ -96,33 +147,34 @@ public:
 //		return (*constructorWidget)(parent);
 //	}
 
-private:
-	//object
-	typedef QObject*(*Constructor)(QObject* parent);
-	template<typename T>
-	static QObject* constructorHelper(QObject* parent)
-	{
-		return new T(parent);
-	}
+//private:
+//	//object
+//	typedef QObject*(*Constructor)(QObject* parent);
+//	template<typename T>
+//	static QObject* constructorHelper(QObject* parent)
+//	{
+//		return new T(parent);
+//	}
 
-	static QHash<QByteArray, Constructor>& instance()
-	{
-		static QHash<QByteArray, Constructor> instance;
-		return instance;
-	}
+//	static QHash<QByteArray, Constructor>& instance()
+//	{
+//		static QHash<QByteArray, Constructor> instance;
+//		return instance;
+//	}
 
-	typedef QWidget*(*ConstructorWidget)(QWidget* parent);
-	template<typename T1>
-	static QWidget* constructorHelperWidget(QWidget* parent)
-	{
-		return new T1(parent);
-	}
+////	typedef QWidget*(*ConstructorWidget)(QWidget* parent);
+//	using ConstructorWidget = QWidget*()(QWidget* parent);
+//	template<typename T1>
+//	static QWidget* constructorHelperWidget(QWidget* parent)
+//	{
+//		return new T1(parent);
+//	}
 
-	static QHash<QByteArray, ConstructorWidget>& instanceWidget()
-	{
-		static QHash<QByteArray, ConstructorWidget> instanceWidget;
-		return instanceWidget;
-	}
-};
+//	static QHash<QByteArray, ConstructorWidget>& instanceWidget()
+//	{
+//		static QHash<QByteArray, ConstructorWidget> instanceWidget;
+//		return instanceWidget;
+//	}
+//};
 
 #endif // KCMDFACTORY_H

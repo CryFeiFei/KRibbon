@@ -35,6 +35,9 @@ void KxMainWindow::initCmd()
 {
 	KCommand* cmd = KCmdFactory::createCommand("KCmdStart", this, this);
 	qDebug()<<cmd->objectName()<<endl;
+
+	QWidget* widget = KWidgetFactory::createWdiget("KRibbonPushButton", this);
+	qDebug()<<widget->objectName()<<endl;
 }
 
 void KxMainWindow::awake()

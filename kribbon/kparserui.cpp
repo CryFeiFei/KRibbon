@@ -31,12 +31,6 @@ KParserUI::KParserUI(QString xmlPath, QObject *parent) : QObject(parent)
 	RegisterCmd();
 
 	ParserXML();
-
-	KCmdStart* object = (KCmdStart*)KCmdObjectFactory::createObject("KCmdStart", this);
-	qDebug()<<object<<endl;
-
-	KCmdStart* object1 = (KCmdStart*)KCmdObjectFactory::createObject("KCmdStart", this);
-	qDebug()<<object1<<endl;
 }
 
 void KParserUI::ParserXML()

@@ -2,6 +2,7 @@
 #define KCMDTABSTART_H
 
 #include <QObject>
+#include <QPushButton>
 #include "kcommand.h"
 #include "kcmdfactory.h"
 
@@ -18,6 +19,14 @@ public:
 	KCmdStart(QObject *parent = nullptr, QObject* host = nullptr);
 
 signals:
+
+};
+
+class KRibbonPushButton : public QPushButton
+{
+	Q_OBJECT
+public:
+	KRibbonPushButton(QObject* parent);
 
 };
 
