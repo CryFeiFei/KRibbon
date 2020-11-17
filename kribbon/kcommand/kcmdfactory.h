@@ -15,7 +15,15 @@
 #include "kxmainwindow.h"
 
 
-class KCmdFactory;
+class KCommandFactoryItemBase;
+
+class KCmdFactory
+{
+public:
+	static void regiserCommand(KCommandFactoryItemBase* item);
+	static KCommand* createCommand(const QString& className, QObject* parent, QObject* host);
+};
+
 
 class KCommandFactoryItemBase
 {
@@ -25,13 +33,6 @@ public:
 	QString className();
 private:
 	QString m_className;
-};
-
-class KCmdFactory
-{
-public:
-	static void regiserCommand(KCommandFactoryItemBase* item);
-	static KCommand* createCommand(const QString& className, QObject* parent, QObject* host);
 };
 
 template<typename T, typename _HOST>
@@ -64,24 +65,24 @@ KCmdFactoryItem<classname, host> gs_cmd_##classname(#classname, #host)
 
 //------------------------
 // widget
-class KWidgetFactory;
 
-class KWidgetFactoryItemBase
-{
-public:
-	KWidgetFactoryItemBase(const QString& className);
-	virtual QWidget* createWidget(QObject* parent) = 0;
-	QString className();
-private:
-	QString m_className;
-};
-
+class KWidgetFactoryItemBase;
 
 class KWidgetFactory
 {
 public:
 	static void regiserWidget(KWidgetFactoryItemBase* item);
-	static QWidget* createWdiget(const QString& className, QObject* parent);
+	static QWidget* createWdiget(const QString& className, QWidget* parent);
+};
+
+class KWidgetFactoryItemBase
+{
+public:
+	KWidgetFactoryItemBase(const QString& className);
+	virtual QWidget* createWidget(QWidget* parent = nullptr) = 0;
+	QString className();
+private:
+	QString m_className;
 };
 
 template<typename T>
@@ -94,7 +95,7 @@ public:
 		KWidgetFactory::regiserWidget(this);
 	}
 
-	QWidget* createWidget(QObject* parent)
+	QWidget* createWidget(QWidget* parent = nullptr)
 	{
 		return new T(parent);
 	}

@@ -4,14 +4,14 @@
 #include <QWidget>
 #include <QPushButton>
 
-//class KRibbonPushButton : public QPushButton
-//{
-//	Q_OBJECT
-//public:
-//	explicit KRibbonPushButton(QWidget *parent = nullptr);
+class KRibbonPushButton : public QPushButton
+{
+	Q_OBJECT
+public:
+	explicit KRibbonPushButton(QWidget *parent = nullptr);
 
-//signals:
+signals:
 
-//};
+};
 
 #endif // KRIBBONPUSHBUTTON_H

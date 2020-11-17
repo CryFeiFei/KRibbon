@@ -7,12 +7,6 @@ KCmdStart::KCmdStart(QObject *parent,  QObject* host) : KCommand(parent)
 }
 KRB_REGISTER_COMMAND(KCmdStart, KxMainWindow);
 
-KRibbonPushButton::KRibbonPushButton(QObject *parent)
-{
-	setObjectName("KRibbonPushButton");
-}
-KRB_REGISTER_Widget(KRibbonPushButton);
-
 
 KCmdOpen::KCmdOpen(QObject *parent) : KCommand(parent)
 {

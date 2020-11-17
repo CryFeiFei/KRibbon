@@ -22,14 +22,6 @@ signals:
 
 };
 
-class KRibbonPushButton : public QPushButton
-{
-	Q_OBJECT
-public:
-	KRibbonPushButton(QObject* parent);
-
-};
-
 class KCmdOpen : public KCommand
 {
 	Q_OBJECT

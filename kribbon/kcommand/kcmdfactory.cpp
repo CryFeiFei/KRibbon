@@ -64,7 +64,7 @@ void KWidgetFactory::regiserWidget(KWidgetFactoryItemBase *item)
 	WidgetFactoryItems()[item->className()] = item;
 }
 
-QWidget *KWidgetFactory::createWdiget(const QString &className, QObject *parent)
+QWidget *KWidgetFactory::createWdiget(const QString &className, QWidget *parent)
 {
 	auto itemFactory = WidgetFactoryItems().find(className);
 	if (itemFactory != WidgetFactoryItems().end())

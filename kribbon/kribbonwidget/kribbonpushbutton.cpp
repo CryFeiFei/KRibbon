@@ -1,9 +1,10 @@
 #include "kribbonpushbutton.h"
 #include <QMetaObject>
-//KRibbonPushButton::KRibbonPushButton(QWidget *parent) : QPushButton(parent)
-//{
+#include "../kcommand/kcmdfactory.h"
+KRibbonPushButton::KRibbonPushButton(QWidget *parent) : QPushButton(parent)
+{
 
-//}
+}
 
 
-//Q_DECLARE_METATYPE(KRibbonPushButton);
+KRB_REGISTER_Widget(KRibbonPushButton);
